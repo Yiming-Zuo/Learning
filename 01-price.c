@@ -23,9 +23,9 @@ int main(void)
 {
     // 声明 AMOUNT是一个直接量(literal)，const是一个修饰符
     const int AMOUNT = 100;
-    // int-关键字-语言定义的单词 price-标识符-变量、函数的名称
+    // int(integer)-关键字-语言定义的单词 price-标识符-变量、函数的名称
     int price = 0, change = 100;
-    // 赋值表达式语句
+    // 赋值表达式语句，赋值就是将数据放到内存的过程。
     // 写程序不是描述关系，写程序是表达动作，是让计算机一步一步把事情做出来
     price = 0;
     // 表达式语句：printf-运算对象 ()-运算符
@@ -37,7 +37,7 @@ int main(void)
 
     // 表达式=运算符+算子
     change = AMOUNT - price;
-    // printf（格式化输出函数）：把num的值内嵌在字符串中，%d占位符-标记位置和输出形式
+    // printf（print format格式化打印函数）：把num的值内嵌在字符串中，%d(decimal)占位符-标记位置和输出形式
     printf("剩余金额：%d\n", change);
 
     return 0;
