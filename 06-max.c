@@ -9,7 +9,7 @@ int main(void) {
         min = b;
     } else {
         min = a;
-    }0
+    }
 
     for (i=min; i>1; i--) {
         if (a%i==0 && b%i==0) {
