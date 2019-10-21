@@ -3,4 +3,4 @@ project(C C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(C main.c)
+add_executable(C 06-max.c)
