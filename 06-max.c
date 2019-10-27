@@ -11,7 +11,7 @@ int main(void) {
         min = a;
     }
 
-    for (i=min; i>1; i--) {
+    for (i=min; i>=1; i--) {
         if (a%i==0 && b%i==0) {
             printf("%d", i);
             break;
