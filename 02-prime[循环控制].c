@@ -5,9 +5,7 @@
 int main(void)
 {
     int n, i;
-
     scanf("%d", &n);
-
 //    int isPrime = 1; // 初始化n是素数
     for (i=2;i<n;i++) {
         if (n % i == 0){
@@ -15,13 +13,11 @@ int main(void)
             break;
         }
     }
-
 //    if (isPrime == 1) {
 //        printf("Y");
 //    } else {
 //        printf("N");
 //    }
-
     if (i == n) {
         printf("Y"); // 如果循环没有被break判断n是质数
     } else {
