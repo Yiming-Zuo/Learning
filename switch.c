@@ -5,6 +5,7 @@
 int main(void) {
     int grade;
     scanf("%d", &grade);
+    // grade/10:10，9:90-100 8:80-89 7:70-79....
     grade /= 10;
 
     switch(grade) {
