@@ -1,48 +1,56 @@
 #include <stdio.h>
-int count(int year, int month, int day);
 
 int main(void) {
-    int year, month, day;
-    scanf("%d/%d/%d", &year, &month, &day);
+    const int num=100;
+    int a_list[num];
+    int b_list[num];
+    int a, b,c,d, count, count_1;
 
-    printf("%d", count(year, month, day));
-}
+    count = 0;
+    count_1 = 0;
+    do {scanf("%d %d", &a, &b);
+        if (a==0) {
+            count_1++;
+        }
+        a_list[count] = a;
+        b_list[count] = b;
+        count++;
+    } while (count_1!=2);
 
+//    for (int i = 0; i < 10; i++) {
+//        printf("%d ", b_list[i]);
+//    }
+//    printf("\n");
 
-int count(int year, int month, int day) {
-    int n=0;
-
-    switch (month) {
-        case 1:n = day;
-            break;
-        case 2:n = day + 31;
-            break;
-        case 3:n = day + 59;
-            break;
-        case 4:n = day + 90;
-            break;
-        case 5:n = day + 120;
-            break;
-        case 6:n= day + 151;
-            break;
-        case 7:n = day + 181;
-            break;
-        case 8:n = day + 212;
-            break;
-        case 9:n = day + 243;
-            break;
-        case 10:n = day + 273;
-            break;
-        case 11:n = day + 304;
-            break;
-        case 12:n = day + 334;
-            break;
-    }
-    if( ( year % 4 == 0 && year % 100 != 0 ) || year % 400 == 0 ) {
-        if ( month > 2 ) {
-            n++;
+    for (int k = num-1; k >= 0 ; k--) {
+        if (a_list[k]&&b_list[k]){
+            c = b_list[k];
+            for (int i = k-1; i >=0 ; i--) {
+                if (a_list[k]==a_list[i]){
+                    c = b_list[k]+b_list[i];
+                    printf("%d, %d", a_list[k], c);
+                    break;
+                }
+            }
+            printf("%d, %d", a_list[k], c);
         }
     }
+//    for (int i = 0; i < num; i++) {
+//        for (int j = i+1; j < num; j++) {
+//            if (a_list[i] == a_list[j]) {
+//                d = a_list[i];
+//                c = b_list[i] + b_list[j];
+////                printf("%d %d %d ", i, j, c);
+//            } else {
+//                c = b_list[i];
+//                d = a_list[i];
+//            }
+//
+//
+//        }
+//        printf("%dx%d\n", c,d);
+//    }
 
-    return n;
+    
+    return 0;
 }
