@@ -1,0 +1,12 @@
+#英雄ID
+heroId:1
+#英雄姓名
+heroName:廉颇
+
+#英雄简介
+heroInfo:老兵不死!
+
+#英雄攻击
+heroAtk:300
+#英雄防御
+heroDef:500
