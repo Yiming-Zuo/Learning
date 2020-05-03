@@ -95,6 +95,25 @@ int del_node(struct LinkNode *p_header, int delVal) {
 	return -2;
 }
 
+// 反转
+int reverseLL(struct LinkNode *p_header) {
+	if (p_header == NULL) {
+		return -1;
+	}
+	struct LinkNode *p_pre = p_header->next;
+	struct LinkNode *p_cur = p_pre->next;
+	struct LinkNode *p_next = p_cur->next;
+	p_pre->next = NULL;  // 将第二个结点的next设为NULL
+	while (p_cur != NULL) {  // cur==NULL时 pre是最后一个结点
+		p_next = p_cur->next;  // 保存下一个结点地址
+		p_cur->next = p_pre;
+		p_pre = p_cur;
+		p_cur = p_next;
+	}
+	p_header->next = p_pre;  // 将头结点与最后一个结点相连
+	return 0;
+}
+
 int clear_ll(struct LinkNode *p_header) {
 	if (p_header == NULL) {
 		return -1;

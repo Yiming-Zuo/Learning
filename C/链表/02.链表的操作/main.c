@@ -9,6 +9,9 @@ int main(int argc, char *argv[]) {
 	
 //	del_node(p_header, 30);
 	
+	reverseLL(p_header);
+	foreach_linkedlist(p_header);
+	
 //	clear_ll(p_header);
 //	foreach_linkedlist(p_header);
 	

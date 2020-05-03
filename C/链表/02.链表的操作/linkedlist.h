@@ -13,5 +13,6 @@ int foreach_linkedlist(struct LinkNode *p_header);  // 遍历链表
 int insert_node_right(struct LinkNode *p_header, int oldVal, int newVal);  // 插入节点
 int insert_node_left(struct LinkNode *p_header, int oldVal, int newVal);
 int del_node(struct LinkNode *p_header, int delVal);  // 删除节点
+int reverseLL(struct LinkNode *p_header);  // 反转列表
 int clear_ll(struct LinkNode *p_header);  // 清空链表（保留头节点）
 int destory_ll(struct LinkNode *p_header);  // 销毁链表
