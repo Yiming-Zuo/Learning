@@ -1,0 +1,5 @@
+﻿  mydll.c
+    正在创建库 C:\Users\b406\Desktop\C\C\库文件\01.静态库\Release\03.动态库.lib 和对象 C:\Users\b406\Desktop\C\C\库文件\01.静态库\Release\03.动态库.exp
+LINK : warning LNK4232: 名称 03.动态库.exe 包含非 ASCII 字符，在具有除 936 以外的 ANSI 代码页的系统上可能不能加载 DLL
+MSVCRT.lib(exe_main.obj) : error LNK2001: 无法解析的外部符号 _main
+C:\Users\b406\Desktop\C\C\库文件\01.静态库\Release\03.动态库.exe : fatal error LNK1120: 1 个无法解析的外部命令

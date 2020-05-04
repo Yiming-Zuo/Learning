@@ -1,0 +1,2 @@
+﻿main.obj : error LNK2019: 无法解析的外部符号 _myadd，该符号在函数 _main 中被引用
+C:\Users\b406\Desktop\C\C\库文件\01.静态库\Debug\02.静态库的使用.exe : fatal error LNK1120: 1 个无法解析的外部命令

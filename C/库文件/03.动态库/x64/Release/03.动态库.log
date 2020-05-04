@@ -1,0 +1,8 @@
+﻿  mydll.c
+    正在创建库 C:\Users\b406\Desktop\C\C\库文件\01.静态库\x64\Release\03.动态库.lib 和对象 C:\Users\b406\Desktop\C\C\库文件\01.静态库\x64\Release\03.动态库.exp
+LINK : warning LNK4232: 名称 03.动态库.dll 包含非 ASCII 字符，在具有除 936 以外的 ANSI 代码页的系统上可能不能加载 DLL
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 1 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  03.动态库.vcxproj -> C:\Users\b406\Desktop\C\C\库文件\01.静态库\x64\Release\03.动态库.dll
