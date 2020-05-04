@@ -48,10 +48,10 @@ int comparePerson(void *p_i, void *p_j) {
 void mySort1(void *p_arr, int len, int size, int(*p_func)(void *, void *)) {
 	void *tmp = malloc(size);
 	for (int i=0;i<len;i++) {
-		void *p_i = p_arr + size*i;
+		void *p_i = p_arr + size*i;  // 第i个元素的首地址
 		for (int j=i+1;j<len;j++) {
-			void *p_j = p_arr + size*j;
-			if (p_func(p_i, p_j)) {
+			void *p_j = p_arr + size*j;  // 第j个元素的首地址
+			if (p_func(p_i, p_j)) {  // 回调函数比较特定类型下第i和j个元素的大小
 				// 通过内存拷贝实现交换
 				memcpy(tmp, p_i, size);
 				memcpy(p_i, p_j, size);
