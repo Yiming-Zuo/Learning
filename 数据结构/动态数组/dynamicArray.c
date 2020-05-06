@@ -11,9 +11,6 @@
  * 4.删除元素
  * 5.销毁数组
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "dynamicArray.h"
 
 // 返回数组结构体指针
@@ -46,7 +43,7 @@ int insert_arr(struct dynamicArray *arr, void *data, int pos) {
 		arr->pAddr = newSpace;
 		arr->capacity *= 2; 
 	}
-	if (pos < 0 || pos >= arr->capacity) {
+	if (pos < 0 || pos > arr->size) {  // pos == size 有效尾插
 		pos = arr->size;
 	}
 	// pos后的元素从后向前往后移动一位
@@ -67,18 +64,15 @@ void foreach_arr(struct dynamicArray *arr, void p_func(void *data)) {
 		p_func(arr->pAddr[i]);
 	}
 }
-// 遍历的回调函数
-void print_struct(void *data) {
-	struct Person *p = data;
-	printf("姓名：%s 年龄：%d\n", p->name, p->age); 
-}
 // 按位置删除元素
 int delete_ele(struct dynamicArray *arr, int pos) {
 	if (arr == NULL) {
 		return -1;
 	}
 	if (pos >= arr->size || pos < 0) {
-		pos = arr->size-1;
+//		pos = arr->size-1;
+		arr->size -= 1;  // 直接丢掉最后一个void *
+		return 0;
 	}
 	// free(arr->pAddr[pos]);  // 无需释放
 	for (int i=pos; i<arr->size-1; i++) {
@@ -93,35 +87,25 @@ int removeByValue(struct dynamicArray *arr, void *value, int(*my_compare)(void *
 		return -1;
 	}
 	for (int i=0; i<arr->size; i++) {
-		// if (arr->pAddr == value) {  // 对比地址
+//		if (arr->pAddr[i] == value) {  // 对比void *没有意义
 		if (my_compare(arr->pAddr[i], value)) {  // 对比数据
 			printf("删除第%d个元素\n", i);
 			delete_ele(arr, i);  // 调用按位置删除函数
-			i--;  // 按位置删除后下一个元素前移一位，需重新遍历第i个元素
+			i--;  // 按位置删除后下一个元素前移一位，需重新遍历第i个元素，size已经-1
 		}
 	}
 	return 0;
 }
-int compare_struct(void *p_arr, void *p_value) {
-	struct Person *p1 = p_arr;
-	struct Person *p2 = p_value;
-	if (strcmp(p1->name, p2->name)==0 && p1->age == p2->age) {
-		return 1;
-	}
-	return 0;
-}
-
-
 // 销毁数组
 int destory_arr(struct dynamicArray *arr) {
 	if (arr == NULL) {
 		return -1;
 	}
 	if (arr->pAddr != NULL) {
-		free(arr->pAddr);
+		free(arr->pAddr);  // 先释放结构体内部真实数组指针
 		arr->pAddr = NULL;
 	}
-	free(arr);
+	free(arr);  // 再释放结构体指针
 	arr = NULL;
 	return 0;
 }
