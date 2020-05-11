@@ -68,16 +68,16 @@ int isEmpety(sstack p) {
 	return 1;
 }
 
-void top_sstack(sstack p, void(*print_func)(void *)) {
+void *top_sstack(sstack p) {
 	if (NULL == p) {
-			return;
+			return NULL;
 	}
 	struct SStack *mystack = p;
 	// 判断栈是否为空
 	if (mystack->size == 0) {
-		return;
+		return NULL;
 	}
-	print_func(mystack->data[mystack->size-1]);
+	return mystack->data[mystack->size-1];
 }
 
 int destory_sstack(sstack p) {

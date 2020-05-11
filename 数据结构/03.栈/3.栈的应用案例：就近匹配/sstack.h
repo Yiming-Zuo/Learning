@@ -18,5 +18,5 @@ int push_sstack(sstack p, void *data);
 int pop_sstack(sstack p);
 int sizeof_sstack(sstack p);
 int isEmpety(sstack p);
-void top_sstack(sstack p, void(*print_func)(void *));
+void *top_sstack(sstack p);
 int destory_sstack(sstack p);
