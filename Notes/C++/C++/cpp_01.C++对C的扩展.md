@@ -400,3 +400,113 @@ void func17(void) {
 	showValue(a);
 }
 ```
+
+# 11 内联函数
+* 成员函数前都隐藏的加了关键字 inline
+* 内联仅仅只是给编译器一个建议，编译器不一定会接受这种建议，如果你没有将函数声明为内联函数，那么编译器也可能将此函数做内联编译。一个好的编译器将会内联小的、简单的函数。             
+* 以下情况编译器可能考虑不会将函数进行内联编译：
+    * 存在循环语句
+    * 存在过多的条件判断语句
+    * 函数体过于庞大
+    * 对函数进行取址操作
+
+```cpp
+// 内联函数：不会出现宏函数的缺陷，也有宏函数的优点，以空间换时间
+#include <iostream>
+using namespace std;
+// 声明和定义要同时加inline
+inline int func(int x, int y);
+inline int func(int x, int y) {
+	return x+y;
+}
+
+int main(int argc, char *argv[]) {
+	int num1 = 100;
+	int num2 = 200;
+	cout << func(num1, num2) << endl;
+	return 0;
+} 
+```
+
+# 12 函数的默认参数和占位参数
+
+```cpp
+// 1 默认参数
+// 函数的声明和定义只能有一个有默认参数
+int func01(int x, int y);
+int func01(int x, int y=20) {
+	return x+y;
+}
+// 2 占位参数
+// 只声明形参类型，不声明形参变量名，调用函数时必须传入数值
+// 占位参数也可以设置默认值
+// int func02(int x, int y, int = 10);
+int func02(int x, int y, int) {
+	return x+y;
+}
+
+int main(int argc, char *argv[]) {
+	int x = 1;
+	cout << func01(x) << endl;
+	
+	cout << func02(x, 10, 1) << endl;
+	return 0;
+}
+```
+
+# 13 函数重载（overload）
+C++中允许出现同名的函数
+原理：编译器用不同的参数类型来修饰不同的参数名
+![](media/15895132923136.jpg)
+
+* 实现函数重载的条件：
+    * 同一个作用域
+    * 参数个数不同
+    * 参数类型不同
+    * 参数顺序不同
+* 注意事项：
+    * 形参用引用时，加const和不加const有区别
+    * 形参用引用时，不要用值传递
+    * 返回值不作为函数重载的依据
+    * 函数重载和默认参数一起使用，容易产生二义性问题
+    
+# 14 extern "C"
+* c函数: void MyFunc(){} ,被编译成函数: MyFunc
+* c++函数: void MyFunc(){},被编译成函数: _Z6Myfuncv   
+在c++中调用c的函数，需要按C的方式去编译链接这个函数，而不是c++的方式
+
+```cpp
+// func.h
+// 如果是C++编译器运行，就用C的方式链接里面的函数
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#pragma once
+#include <stdio.h>
+void show();
+
+#ifdef __cplusplus
+}
+#endif
+
+//func.c
+#include "func.h"
+
+void show() {
+	printf("hello, world");
+}
+
+// main.cpp
+#include <iostream>
+#include "func.h"
+// 以C语言方式链接
+//extern "C" void show();
+
+using namespace std;
+int main(int argc, char *argv[]) {
+	show();
+}
+```    
+
+    

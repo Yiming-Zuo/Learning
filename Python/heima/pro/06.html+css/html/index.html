@@ -1,0 +1,111 @@
+<!-- 文件声明 -->
+<!DOCTYPE html>
+<!-- lang="en" 表示网页是英文网页，chrome自动翻译，一般不指定 -->
+<html lang="en">
+<head>
+    <!-- 编码格式 -->
+    <meta charset="UTF-8">
+    <!-- 在移动端浏览网页，网页不缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 在ie浏览器查看网页时，使用ie的最高版本 -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页标题</title>
+</head>
+<body>
+    <h1>h1标题</h1>
+    <hr>
+    <div>div标签</div>
+    <p>段落标签</p>
+    <br>
+    <div>
+        <img src="imgs/logo.png" alt="图片加载失败">
+    </div>
+    <a href="http://www.baidu.com">百度网</a>
+    <!-- ul标签定义无序列表 -->
+    <ul>
+        <!-- li便签定义列表项目 -->
+        <li>标题一</li>
+        <li>标题二</li>
+        <li>标题三</li>
+    </ul>
+    <!-- ol标签定义有序列表 -->
+    <ol>
+        <li>标题一</li>
+        <li>标题二</li>
+        <li>标题三</li>
+    </ol>
+    <!-- table标签：表格 -->
+    <!-- border-collapse: collapse; 合并边框 -->
+    <table style="border: 1px black solid; border-collapse: collapse;">
+        <!-- tr标签：表格中一行 -->
+        <tr >
+            <!-- th标签：表头 -->
+            <th style="border: 1px black solid;">姓名</th>
+            <th style="border: 1px black solid;">分数</th>
+        </tr>
+        <tr>
+            <!-- td标签：列 -->
+            <td style="border: 1px black solid;">张三</td>
+            <td style="border: 1px black solid;">100</td>
+        </tr>
+    </table>
+    <!-- form标签：表单 -->
+    <!-- action属性：设置表单数据提交地址 -->
+    <!-- method属性：设置表单提交方式 GET:提交数据到地址栏 POST：提交数据到请求体-->
+    <form action="http://www.baidu.com" method="POST">
+        <p>
+            <!-- label标签：文字标注 -->
+            <!-- 表单元素属性设置 -->
+            <!-- name属性：表单元素的名称：提交数据时的参数名 -->
+            <!-- value属性：表单元素的值，提交数据时参数名所对应的值 -->
+            <!-- input type="text":单行文本输入框 -->
+            <label>用户名:</label><input type="text" name="username">
+        </p>
+        <p>
+            <!-- input type="passwword":密码输入框 -->
+            <label>密码:</label><input type="password" name="password">
+        </p>
+        <p>
+            <!-- input type="radio":单选框 -->
+            <label>性别:</label>
+            <input type="radio" name="gender" value="0">男
+            <input type="radio" name="gender" value="0">女
+        </p>
+        <p>
+            <!-- input type="checkbox":复选框 -->
+            <label>爱好:</label>
+            <input type="checkbox" name="love" value="0">游泳
+            <input type="checkbox" name="love" value="1">跑步
+            <input type="checkbox" name="love" value="2">健身
+        </p>
+        <p>
+            <!-- input type="file":上传文件 -->
+            <label>照片:</label>
+            <input type="file" name="file">
+        </p>
+        <p>
+            <!-- <textaera></textarea>标签：多行文本输入框 -->
+            <label>个人描述:</label>
+            <textarea name="desciption"></textarea>
+        </p>
+        <p>
+            <!-- <select><option></option></select>标签：下拉列表 -->
+            <!-- <option></option>标签：下拉列表选项 -->
+            <label>籍贯:</label>
+            <select name="position">
+                <option value="0">上海</option>
+                <option value="1">北京</option>
+                <option value="2">深圳</option> 
+            </select>
+        </p>
+        <p>
+            <!-- input type="submit":提交按钮 -->
+            <input type="submit">
+            <!-- input type="reset":重置按钮 -->
+            <input type="reset">
+            <!-- input type='button' value='普通按钮':普通按钮 -->
+            <input type="button" value="普通按钮">
+        </p>
+    </form>
+</body>
+</html>

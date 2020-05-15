@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css选择器</title>
+
+    <style type="text/css">
+        /* 1. 标签选择器 */
+        p{color: aqua;}
+        /* 2. 类选择器 */
+        .blue{color: blue;}
+        .big{font-size: 20px}
+        .box{width: 250px;height: 30px;background: gold;}
+        /* 3. 分层选择器（后代选择器） */
+        .one span{color: red;}
+        .one .pink{color: pink;}
+        .one .gold{color: gold;}
+        /* 祖孙关系 */
+        .one p{color:green}
+        /* 4. id选择器（一般给程序使用） */
+        #one{color: greenyellow;font-size: 30px;}
+        /* 5. 组选择器 */
+        .box1,.box2,.box3{width:100px;height:100px}
+        .box1{background:red}
+        .box2{background:pink}
+        .box2{background:gold}
+        /* 6. 伪类选择器 */
+        .box4{width:100px;height:100px;background:gold;}
+        /* 伪类选择器可以给其他选择器添加特殊效果，比如鼠标悬浮效果 */
+        .box4:hover{width:300px;}
+    </style>
+    
+</head>
+<body>
+    <div>
+        普通的div标签
+    </div>
+    <p>
+        普通的段落标签
+    </p>
+    <hr>
+    <div class="blue">
+        .blue的div标签
+    </div>
+    <h3 class="big box">
+        .big.box的h3标签
+    </h3>
+    <p class="blue big box">
+        .blue.big.bix的段落标签
+    </p>
+    <hr>
+    <div class="one">
+        <div>
+            <div>
+                <p>
+                    我是孙子
+                </p>
+            </div>
+        </div>
+        <span>普通行内元素</span>
+        <!-- 链接当前页面，不会刷新 -->
+        <a href="#" class="pink">百度</a>
+        <!-- 连接当前页面，刷新 -->
+        <a href="" class="gold">谷歌</a>
+    </div>
+    <hr>
+    <p id="one">
+        #one段落标签
+    </p>
+    <hr>
+    <div class="box1">这是第一个div</div>
+    <div class="box2">这是第二个div</div>
+    <div class="box3">这是第三个div</div>
+    <hr>
+    <div class="box4">这是第四个div</div>
+</body>
+</html>
