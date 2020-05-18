@@ -3,10 +3,13 @@
 using namespace std;
 
 class Person {
-	string m_name = "tom";  // 只读
+	string m_name;  // 只读
 	int m_age;  // 可读可写
 	string m_lover;  // 只写
 public:
+	Person() {
+		m_name = "tom";
+	}
 	void get_name() {
 		cout << "name:" << m_name << endl;
 	}
