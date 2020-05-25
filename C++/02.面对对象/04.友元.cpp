@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+
 class GoodGay;  // 类声明
 class Building {
 	friend void visit_bedroom(Building &build);  // 全局函数做友元
@@ -26,9 +27,6 @@ public:
 	
 	Building *room;	
 };
-
-
-
 
 void visit_bedroom(Building &build) {
 	cout << build.bedroom << endl;

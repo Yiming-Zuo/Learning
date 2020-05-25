@@ -11,6 +11,7 @@ public:
 		cout << "showPerson" << endl;
 	}
 	void showAge() {
+		// 判断是否为空指针
 		if (this == NULL) {
 			return;
 		}
