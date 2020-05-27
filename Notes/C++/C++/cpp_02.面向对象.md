@@ -612,6 +612,7 @@ int main(int argc, char *argv[]) {
 ## 3.1 成员变量和成员函数的存储
 * C++类对象中的变量和函数是分开存储的，成员函数和静态数据成员都不占对象的空间
 * 类中的每一个非内联成员函数只会诞生一份函数实例，多个同类型的对象共用这一块代码
+![-w384](media/15904846958334.jpg)
 
 ```cpp
 class Myclass01 {
@@ -1118,3 +1119,427 @@ int main(int argc, char *argv[]) {
 * 二元运算符建议使用全局函数配合友元函数进行重载
 
 ## 5.10 案例：字符串类封装
+
+# 6 继承
+## 6.1 继承方式
+派生类继承域基类，拥有基类的所有成员函数和成员方法（构造函数和析构函数和operator=除外），但是在派生类中，继承的成员不一定能够直接访问，不同的继承方式会导致不同的访问权限。
+* 公共继承
+    * pubilc -> public
+    * protected -> protected
+    * private -> 不可访问
+* 保护继承
+    * public -> protected
+    * protected -> protected
+    * private -> 不可访问
+* 私有继承
+    * public -> private
+    * protected -> private
+    * private -> 不可访问
+
+## 6.2 继承中的对象模型
+* 派生类继承了基类的所有成员变量，只是不同的继承方式导致成员变量的访问权限不同，
+* 派生类也继承到了基类的私有变量，只是编译器做了保护，因此访问不到
+* sizeof(子类) = 父类中的非静态成员属性大小 + 子类中的非静态成员属性大小
+
+```cpp
+class BaseClass {
+ public:
+	int num1;
+ protected:
+	int num2;
+ private:
+	int num3;
+};
+
+class SonClass1 : public BaseClass {
+public:
+	int num4;
+	static int num5;
+};
+
+class SonClass2 : protected BaseClass {};
+class SonClass3 : private BaseClass {};
+
+int main(int argc, char *argv[]) {
+	cout << sizeof(BaseClass) << endl;  // 12
+	cout << sizeof(SonClass1) << endl;  // 16
+	cout << sizeof(SonClass2) << endl;  // 12
+	cout << sizeof(SonClass3) << endl;  // 12
+	return 0;
+}
+```
+
+### 6.2.1 vs中的开发人员命令提示工具
+查看继承的对象模型
+`cl /d1 reportSingleClassLayoutSon 文件名`
+
+![-w666](media/15904861351847.jpg)
+
+## 6.3 继承中的构造和析构
+* 子类不会继承编译器为父类提供的4的默认函数：构造、析构、拷贝、operator=
+* 当创建一个子类对象时，先调用父类构造函数，再调用类成员的构造函数，最后调用子类的构造函数，析构的顺序与构造相反     
+ ![-w464](media/15904881056009.jpg)
+* 当父类中有有参构造函数时，创建子类对象时需要使用初始化列表方法调用父类的有参构造函数
+
+```cpp
+class Info {
+ public:
+	Info() {
+		cout << "Info的普通构造函数调用" << endl;
+	}
+	~Info() {
+		cout << "Info的析构函数调用" << endl;
+	}
+ public:
+	int id;
+};
+
+class BaseClass {
+ public:
+	BaseClass() {
+		cout << "BaseClass的普通构造函数调用" << endl;
+	}
+	BaseClass(int n) : num(n) {
+		cout << "BaseClass的有参构造函数调用" << endl;
+	}
+	~BaseClass() {
+		cout << "BaseClass的析构函数调用" << endl;
+	}
+ private:
+	int num;	
+};
+
+class SonClass : public BaseClass {
+ public:
+	SonClass() : BaseClass(100) {
+		cout << "SonClass的普通构造函数调用" << endl;
+	}
+	SonClass(int num) : BaseClass(num) {
+		cout << "SonClass的普通构造函数调用" << endl;
+	}
+	~SonClass() {
+		cout << "SonClass的析构函数调用" << endl;
+	}
+ public:
+	Info info;
+};
+
+int main(int argc, char *argv[]) {
+	SonClass son;
+//	SonClass son(100);
+	return 0;
+}
+```
+
+## 6.4 继承中的同名成员
+* 非静态成员
+    * 访问父类中同名的成员：加作用域
+    * 父类中同名函数的重载函数也需要加作用域
+* 静态成员
+    * 1.通过类名访问：加作用域
+    * 2.通过对象名访问：加作用域
+
+```cpp
+class BaseClass {
+ public:
+	BaseClass() {
+		num = 10;
+	}
+	void func() {
+		cout << "baseclass的func调用\n";
+	}
+	void func(int n) {
+		cout << n << endl;
+	}
+	static void show() {
+		cout << "baseclass的show调用\n";
+	}
+ public:
+	int num;
+	static int id;
+};
+int BaseClass::id = 1000;  // 类内声明，类外定义
+
+class Son : public BaseClass {
+ public:
+	Son() {
+		num = 100;
+	}
+	void func() {
+		cout << "son的func调用\n";
+	}
+	static void show(int num) {
+		cout << num << endl;
+	}
+ public:
+	int num;
+	static int id;
+};
+int Son::id = 20;
+
+int main(int argc, char *argv[]) {
+	Son son;
+	cout << son.num << endl;
+	son.func();
+	// 1.访问父类中同名的成员：加作用域
+	cout << son.BaseClass::num << endl;
+	son.BaseClass::func();
+	// 2.父类中同名函数的重载函数也需要加作用域
+//	son.func(10);
+	son.BaseClass::func(1000);
+	// 1.通过对象访问同名静态成员
+	son.show(30);
+	cout << son.id << endl;
+	
+	son.BaseClass::show();
+	cout << son.BaseClass::id << endl;
+	// 2.通过类名访问同名静态成员
+	Son::show(40);
+	cout << Son::id << endl;
+	
+	Son::BaseClass::show();
+	cout << Son::BaseClass::id << endl;
+	return 0;
+}
+```
+
+## 6.5 多继承
+![](media/15905482180262.jpg)
+加作用域区分同名函数
+
+```cpp
+class BaseClass1 {
+ public:
+	BaseClass1() {
+		num = 10;
+	}
+	int num;
+};
+
+class BaseClass2 {
+ public:
+	BaseClass2() {
+		num = 20;
+	}
+	int num;
+};
+
+// 多继承
+class Son : public BaseClass1, public BaseClass2 {
+ public:
+	Son() {
+		num = 30;
+	}
+	int num;
+};
+
+int main(int argc, char *argv[]) {
+	cout << sizeof(BaseClass1) << endl;
+	cout << sizeof(BaseClass2) << endl;
+	cout << sizeof(Son) << endl;
+	cout << endl;
+	Son s;
+	cout << s.num << endl;
+	cout << s.BaseClass1::num << endl;
+	cout << s.BaseClass2::num << endl;
+	return 0;
+}
+```
+
+## 6.6 菱形继承产生的问题
+![](media/15905482864765.jpg)
+
+* 重复继承，数据有两份
+* 对重复继承的成员产生二义性
+
+```cpp
+class Animal {
+ public:
+	void func() {
+		cout << "动物类\n";
+	}
+	int age;
+};
+
+class Sheep : public Animal {};
+class Tuo : public Animal {};
+class SheepTuo : public Sheep, public Tuo {};
+
+int main(int argc, char *argv[]) {
+	SheepTuo st;
+//	st.func();  // 二义性
+	st.Sheep::func();
+	// 重复继承
+	cout << sizeof(Animal) << endl;
+	cout << sizeof(Sheep) << endl;
+	cout << sizeof(Tuo) << endl;
+	cout << sizeof(SheepTuo) << endl;
+	return 0;
+}
+```
+
+## 6.7 虚继承
+![](media/15905483579427.jpg)
+
+* 虚继承的类中内存中增加了一个vbptr(virtual base pointer)，vbptr指向了一张表vbtable，表中保存了当前的虚指针对于虚基类的首地址偏移量，使他们共享一份数据
+* 虚继承只能解决具备公共祖先的多继承所带来的二义性问题，不能解决没有公共祖先的多继承的.
+
+```cpp
+class Animal {
+ public:
+	void func() {
+		cout << "动物类\n";
+	}
+	int age;
+};
+
+class Sheep : virtual public Animal {};
+class Tuo : virtual public Animal {};
+class SheepTuo : public Sheep, public Tuo {};  // 继承了两份vbptr指针
+
+int main(int argc, char *argv[]) {
+	SheepTuo st;
+//	st.func();  // 二义性
+	st.Sheep::func();
+	// 重复继承
+	cout << sizeof(Animal) << endl;  // 4
+	cout << sizeof(Sheep) << endl;  // 4+8(指针)+4(表)
+	cout << sizeof(Tuo) << endl;
+	cout << sizeof(SheepTuo) << endl;  // 4+4+4+8+4(覆盖表)
+	return 0;
+}
+```
+
+# 7 多态
+## 7.1 动态多态
+* 面向对象的程序设计原则：开闭原则，对扩展开放，对修改关闭
+* 静态多态（地址早绑定，静态联编，编译时多态）：编译时可以确定函数的代码
+    * 运算符重载
+    * 函数重载
+* 动态多态（地址晚绑定，动态联编，运行时多态）：运行时才能确定函数的代码
+    1. 满足继承关系
+    2. 父类中有虚函数
+    3. 子类中重写了父类中的虚函数
+    4. 多态的使用：父类的指针或者引用指向子类的对象
+
+```cpp
+class Animal {
+ public:
+	// 虚函数
+	virtual void speak() {
+		cout << "动物说话\n";
+	}	
+};
+
+class Cat : public Animal {
+ public:
+	virtual void speak() {
+		cout << "猫说话\n";
+	}	
+};
+
+class Dog : public Animal {
+ public:
+	virtual void speak() {
+		cout << "狗说话\n";
+	}	
+};
+
+void doSpeak(Animal &animal) {  // 父类的引用可以指向子类对象
+	animal.speak();  // 如果传入参数是父类，地址早绑定，speak的函数地址已经确定
+	// 如果传入参数是子类，地址晚绑定
+}
+
+
+int main(int argc, char *argv[]) {
+	Cat cat;
+	Dog dog;
+	doSpeak(cat);
+	doSpeak(dog);
+	return 0;
+}
+``` 
+
+## 7.2 虚函数和纯虚函数
+* 虚函数 `virtual func() {}`
+    1. 如果一个函数在父类中被声明为虚函数，那么在所有子类中它都是虚函数，子类的(virtual)可选
+    2. 子类中虚函数的重定义被称为重写(override)
+    3. virtual只能修饰成员函数，只需要声明时加virtual,定义时不需要
+* 纯虚函数     
+`virtual func() = 0;` 
+    * 只有声明
+    * 抽象类：有纯虚函数就是抽象类，抽象类无法实例化对象     
+    子类继承抽象父类时，必须重写父类中的纯虚函数(子类必须有重写操作)，否则子类也是抽象类
+    * 有纯虚函数，就要有虚析构函数
+
+
+## 7.3 多态的原理
+![](media/15905901893007.jpg)
+>当父类中有了虚函数后：
+> 内部存储的是vfptr(虚函数表指针)，指向vftable(虚函数表)，虚函数表中记录了虚函数的入口地址
+> 当子类重写父类的虚函数时，子类的虚函数表的函数入口地址被覆盖为子类的虚函数入口地址
+> 当多态使用时(父类指针或引用指向子类对象)虚函数时，实现地址晚绑定，vptr指针指向了子类的虚函数表。
+
+## 7.4 虚析构函数和纯虚析构函数
+ * 虚析构函数：解决多态不调用子类析构函数的问题
+ * 纯虚析构函数(类内声明，类外定义)：有纯虚析构函数的类是抽象类
+
+ ```cpp
+ class Animal {
+ public:
+	Animal() {
+		cout << "animal的构造函数调用\n";
+	}
+	// 如果不是虚析构函数，无法调用子类的析构函数
+//	virtual ~Animal() {
+//		cout << "animal的析构函数调用\n";
+//	}
+	virtual ~Animal() = 0;  // 纯虚析构函数
+	virtual void speak() = 0;
+	char *name;
+};
+// 纯虚析构函数的类外定义
+Animal::~Animal() {
+	cout << "animal的析构函数调用\n";
+}
+
+class Dog : public Animal {
+ public:
+	Dog(char *str) {
+		cout << "dog的构造函数调用\n";
+		this->name = new char[strlen(str)+1];
+		strcpy(this->name, str);
+	}
+	~Dog() {
+		cout << "dog的析构函数调用\n";
+		if (NULL != this->name) {
+			delete []name;
+			name = NULL;
+		}
+	}
+	void speak() {
+		cout << name << "狗在叫\n";
+	}
+};
+
+void test(void) {
+	Animal *dog = new Dog("tom");
+	dog->speak();
+	delete dog;
+}
+```
+
+## 7.5 父类和子类的类型转换
+![](media/15905908379894.jpg)
+* 父转子：向下类型转换，不安全
+* 子转父：向上类型转换，安全
+* 多态中父子类的类型转换总是安全的，因为申请空间的大小的是子类的空间大小。
+
+## 7.6 重载、重定义和重写
+* 重载(函数重载)：同一作用域的同名函数
+    * 同一作用域
+    * 参数个数、顺序、类型不用
+    * 和函数返回值无关
+    * 参数中的const也可以作为重载条件
+* 重定义(隐藏)：子类重定义父类中的成员函数(非虚函数)
+* 重写(覆盖)：子类重写父类中的虚函数
