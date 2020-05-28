@@ -42,6 +42,10 @@ class AbstractCaculator {
  public:
 	virtual ~AbstractCaculator() {}  // 有纯虚函数，就要有虚析构函数
 	virtual int getResult() = 0;  // 纯虚函数
+	void setNum(int num1, int num2) {
+		this->num1 = num1;
+		this->num2 = num2;
+	}
 	int num1;
 	int num2;
 };
@@ -64,15 +68,19 @@ class MulCaculator : public AbstractCaculator {
 	}
 };
 
-void test() {
-	AbstractCaculator *cal = new MulCaculator;  // 父类指针指向子类对象
-	cal->num1 = 10;
-	cal->num2 = 30;
-	cout << cal->getResult() << endl;
-	delete cal;
+void cal(int num1, int num2, AbstractCaculator &oper) {
+	oper.setNum(num1, num2);
+	cout << oper.getResult() << endl;
 }
 
+
 int main(int argc, char *argv[]) {
-	test();
+	MulCaculator mul;
+	cal(14, 53, mul);
+	
+	AbstractCaculator * add = new AddCaculator;
+	add->num1 = 14;
+	add->num2 = 53;
+	cout << add->getResult() << endl;
 	return 0;
 }
