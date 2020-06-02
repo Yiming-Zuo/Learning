@@ -1600,7 +1600,7 @@ int main(int argc, char *argv[]) {
  * 虚析构函数：解决多态不调用子类析构函数的问题
  * 纯虚析构函数(类内声明，类外定义)：有纯虚析构函数的类是抽象类
 
- ```cpp
+```cpp
  class Animal {
  public:
 	Animal() {
@@ -1644,7 +1644,6 @@ void test(void) {
 	delete dog;
 }
 ```
-
 
 ## 7.6 重载、重定义和重写
 * 重载(函数重载)：同一作用域的同名函数
