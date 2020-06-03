@@ -1,0 +1,33 @@
+# 二分查找：在有序元素列表中查找指定元素的位置
+# 输入：有序列表
+# 输出：元素位置或null
+
+# 运行时间：
+# 简单查找：线性时间，最多查找的次数与列表长度相同
+# 二分查找：对数时间
+
+# 算法的速度指的并非是时间，而是操作数的增速
+# 运行时间的增速：大O表示法
+# O(n):线性时间 
+# O(logn):对数时间 logn:操作数
+# O(n*logn):快速排序
+# O(n2):选择排序
+# O(n!)
+
+def binary_search(list, item):
+	low = 0
+	high = len(list) - 1
+	
+	while low <= high:  # 只包含一个元素时，检查是否等于查找的元素
+		mid = (low + high) // 2  # // % 整形运算  / 浮点型运算
+		guess = list[mid]  # 检查中间元素
+		if guess == item:
+			return mid
+		elif guess > item:
+			high = mid - 1
+		else:
+			low = mid +1
+	return None
+
+my_list = [1, 3, 5, 7, 9]
+print(binary_search(my_list, 9))
