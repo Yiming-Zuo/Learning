@@ -15,9 +15,9 @@ void test() {
 	vector<int>v;
 	vector<int>::iterator p = v.begin();
 	for (int i=0; i<10; i++) {
-		cout << "当前容量:" << v.capacity() << endl; 
-//		cout << "当前地址:" << v[0] << endl;  // todo
 		v.push_back(i);	
+		cout << "当前容量:" << v.capacity() << endl; 
+		cout << "当前地址:" << &v[0] << endl;  // todo
 	}
 //	print_vector<int>(v);
 }
