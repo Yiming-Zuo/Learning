@@ -17,7 +17,6 @@ class Student {
 	int age;
 };
 
-
 void test() {
 	vector<Student>v;
 	v.push_back(Student("tom", 18));

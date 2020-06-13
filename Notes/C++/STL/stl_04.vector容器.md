@@ -1,7 +1,7 @@
 ---
 title: stl_04.vector容器
 date: 2020-06-08T18:17:25+08:00
-categories: Cpp
+categories: STL
 ---
 ![-w578](media/15916747875748.jpg)
 

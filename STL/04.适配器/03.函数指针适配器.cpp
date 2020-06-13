@@ -6,7 +6,6 @@ void print_vector(int val, int num) {
 	cout << val+num << " ";
 }
 
-
 void test() {
 	vector<int>v;
 	for (int i=0;i<10;i++) {

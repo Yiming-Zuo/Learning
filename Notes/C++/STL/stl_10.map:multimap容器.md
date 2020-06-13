@@ -1,7 +1,7 @@
 ---
 title: stl_10.map/multimap容器
 date: 2020-06-11T15:07:02+08:00
-categories: Cpp
+categories: STL
 ---
 > map容器中所有元素都会根据元素的键值**自动排序**。Map所有的元素都是**pair**,同时拥有**实值和键值**，pair的第一元素被视为键值，第二元素被视为实值
 > 插入和删除操作不会造成原来map迭代器的失效。

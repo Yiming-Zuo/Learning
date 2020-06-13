@@ -1,7 +1,7 @@
 ---
 title: stl_05.deque容器
 date: 2020-06-09T14:47:23+08:00
-categories: Cpp
+categories: STL
 ---
 
 ![](media/15916855645415.jpg)

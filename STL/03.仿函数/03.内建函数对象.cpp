@@ -9,7 +9,7 @@ void test01() {
 	cout << my_plus(20, 10) << endl;
 	
 	modulus<int> my_mod;
-	cout << my_mod(20, 3) << endl;  // 取模运算 %
+	cout << my_mod(-5, -3) << endl;  // 取模运算 %
 	
 	negate<int> neg;
 	cout << neg(20) << endl;  // 取反
@@ -21,7 +21,7 @@ void test02() {
 	cout << less_e(20,21) << endl;
 }
 
-// 3 逻辑元算类函数对象
+// 3 逻辑运算类函数对象
 void print_v(vector<bool> &v) {
 	for (vector<bool>::iterator p=v.begin();p!=v.end();p++) {
 		cout << *p << endl;
@@ -46,8 +46,8 @@ void test03() {
 }
 
 int main(int argc, char *argv[]) {
-//	test01();
+	test01();
 //	test02();
-	test03();
+//	test03();
 	return 0;
 }

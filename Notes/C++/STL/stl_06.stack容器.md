@@ -1,7 +1,7 @@
 ---
 title: stl_06.stack容器
 date: 2020-06-09T19:00:35+08:00
-categories: Cpp
+categories: STL
 ---
 > stack是一种FILO先进后出的数据结构，它只有一个栈顶出口。stack不提供遍历功能，也不提供迭代器。
 

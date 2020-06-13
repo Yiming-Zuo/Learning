@@ -1,7 +1,7 @@
 ---
 title: stl_11.STL各容器的使用时机
 date: 2020-06-12T16:10:57+08:00
-categories: Cpp
+categories: STL
 ---
 
 ![-w702](media/15919494982354.jpg)

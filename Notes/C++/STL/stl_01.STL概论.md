@@ -1,7 +1,7 @@
 ---
 title: stl_01.STL概论
 date: 2020-06-07T16:15:54+08:00
-categories: Cpp
+categories: STL
 ---
 
 # 1 STL六大组件

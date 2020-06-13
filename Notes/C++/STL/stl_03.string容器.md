@@ -1,7 +1,7 @@
 ---
 title: stl_03.string容器
 date: 2020-06-07T18:28:03+08:00
-categories: Cpp
+categories: STL
 ---
 
 > string类封装在头文件<string>中，封装了`char *`，负责管理字符串，是一个`char *`型的容器

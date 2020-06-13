@@ -1,7 +1,7 @@
 ---
 title: stl_07.queue容器
 date: 2020-06-11T10:25:32+08:00
-categories: Cpp
+categories: STL
 ---
 > Queue是一种先进先出 FIFO 的数据结构，它有两个出口，queue容器允许从一端新增元素，从另一端移除元素。
 > queue不提供遍历功能，也不提供迭代器

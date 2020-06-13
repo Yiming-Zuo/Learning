@@ -1,7 +1,7 @@
 ---
-title: stl_09.queue容器
+title: stl_09.set/multiset容器
 date: 2020-06-11T12:54:21+08:00
-categories: Cpp
+categories: STL
 ---
 > set容器中的所有元素都会根据元素的键值**自动被排序**。set**不允许两个元素有相同的键值**。
 > set的元素即是键值又是实值。不可以通过set的迭代器改变set元素的值，因为set元素值就是其键值，关系到set元素的排序规则。如果任意改变set元素值，会严重破坏set组织。换句话说，**set的iterator是一种const_iterator**.
