@@ -1,4 +1,4 @@
-require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
+require(["gitbook", "lodash", "jQuery"], function (gitbook, _, $) {
     var fontState;
 
     var THEMES = {
@@ -51,11 +51,11 @@ require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
         var $book = $(".book");
 
         if (fontState.theme !== 0)
-            $book.removeClass("color-theme-"+fontState.theme);
+            $book.removeClass("color-theme-" + fontState.theme);
 
         fontState.theme = index;
         if (fontState.theme !== 0)
-            $book.addClass("color-theme-"+fontState.theme);
+            $book.addClass("color-theme-" + fontState.theme);
 
         saveFontSettings();
     };
@@ -64,15 +64,15 @@ require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
         var $book = gitbook.state.$book;
 
         $(".font-settings .font-family-list li").removeClass("active");
-        $(".font-settings .font-family-list li:nth-child("+(fontState.family+1)+")").addClass("active");
+        $(".font-settings .font-family-list li:nth-child(" + (fontState.family + 1) + ")").addClass("active");
 
         $book[0].className = $book[0].className.replace(/\bfont-\S+/g, '');
-        $book.addClass("font-size-"+fontState.size);
-        $book.addClass("font-family-"+fontState.family);
+        $book.addClass("font-size-" + fontState.size);
+        $book.addClass("font-family-" + fontState.family);
 
-        if(fontState.theme !== 0) {
+        if (fontState.theme !== 0) {
             $book[0].className = $book[0].className.replace(/\bcolor-theme-\S+/g, '');
-            $book.addClass("color-theme-"+fontState.theme);
+            $book.addClass("color-theme-" + fontState.theme);
         }
     };
 
@@ -94,7 +94,7 @@ require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
     };
 
 
-    gitbook.events.bind("start", function(e, config) {
+    gitbook.events.bind("start", function (e, config) {
         var opts = config.fontsettings;
 
         // Create buttons in toolbar

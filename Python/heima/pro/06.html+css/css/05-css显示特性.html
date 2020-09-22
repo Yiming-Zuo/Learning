@@ -6,33 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>css显示特性</title>
     <style>
-        .box{
+        .box {
             /* 将块元素转化为行内元素 */
-            display:inline;
-        } 
-        .link01{
+            display: inline;
+        }
+
+        .link01 {
             /* 将行内元素转化为块元素 */
-            display:block;
+            display: block;
             height: 50px;
             background: red;
             text-align: center;
             /* 通过行号实现垂直居中 */
             line-height: 50px;
         }
-        .con{
-            width:200px;
-            height:200px;
-            background:gold;
+
+        .con {
+            width: 200px;
+            height: 200px;
+            background: gold;
             /* 将元素隐藏 */
-            display:none;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="con">111</div>
-    <div class="box">这是第一个div</div>
-    <div class="box">这是第二个div</div>
-    <a href="#" class="link01">这是第一个链接</a>
-    <a href="#" class="link01">这是第二个链接</a>
+<div class="con">111</div>
+<div class="box">这是第一个div</div>
+<div class="box">这是第二个div</div>
+<a href="#" class="link01">这是第一个链接</a>
+<a href="#" class="link01">这是第二个链接</a>
 </body>
 </html>

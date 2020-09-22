@@ -6,26 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JavasScript 操作标签元素属性</title>
     <style>
-    .sty01{
-        font-size:20px;
-        color:red;
-    }
-    .sty01{
-        font-size:30px;
-        color:pink;
-        text-decoration: none;
-    }
+        .sty01 {
+            font-size: 20px;
+            color: red;
+        }
+
+        .sty01 {
+            font-size: 30px;
+            color: pink;
+            text-decoration: none;
+        }
     </style>
     <script type="text/javascript">
-        window.onload = function(){
+        window.onload = function () {
             oInput = document.getElementById('input1');
             oA = document.getElementById('link1');
 
             var sType = oInput.type,
-            sName = oInput.name,
-            sValue = oInput.value,
-            sLinks = oA.href;
-            
+                sName = oInput.name,
+                sValue = oInput.value,
+                sLinks = oA.href;
+
             oA.className = 'sty02';
             oInput.style.color = 'green';
             oA.style.fontSize = sValue;
@@ -36,8 +37,8 @@
 
 </head>
 <body>
-    <input type="text" name='setsize' id='input1' value="50px">
-    <hr>
-    <a href="#" id='link1' class='sty01'>连接</a>
+<input type="text" name='setsize' id='input1' value="50px">
+<hr>
+<a href="#" id='link1' class='sty01'>连接</a>
 </body>
 </html>

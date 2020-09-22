@@ -8,18 +8,20 @@
 </head>
 <script text="text/javascript">
     var a;
-    function fnHello(a){
-        alert('hello'+ a);
+
+    function fnHello(a) {
+        alert('hello' + a);
     }
+
     setTimeout(fnHello, 1000, 1);
     var t1 = setInterval(fnHello, 2000, 2);
 
-    function fnStop(){
+    function fnStop() {
         clearInterval(t1);
     }
 </script>
 <body>
-    <input type="button" value="开始" onclick="fnHello(1);">
-    <input type="button" value="停止" onclick="fnStop();">
+<input type="button" value="开始" onclick="fnHello(1);">
+<input type="button" value="停止" onclick="fnStop();">
 </body>
 </html>

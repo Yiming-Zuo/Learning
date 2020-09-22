@@ -7,14 +7,14 @@
     <title>css属性</title>
     <style type="text/css">
         /* 1. 布局属性 */
-        div{
+        div {
             width: 200px;
             height: 200px;
             /* no-repeat:不拉伸 */
             background: pink url("imgs/logo.png") no-repeat;
             border: 2px solid black;
             border-top: 5px solid red;
-            border-left: 5px solid green; 
+            border-left: 5px solid green;
             border-right: 5px solid blueviolet;
             border-bottom: 5px solid beige;
             /* padding: 100px;
@@ -22,18 +22,22 @@
             margin: 10px;
             margin-top: 50px; */
         }
-        .one,.two{
+
+        .one, .two {
             width: 50px;
             height: 50px;
         }
-        .one{
+
+        .one {
             float: right;
         }
-        .two{
+
+        .two {
             float: left;
         }
+
         /* 2. 文本属性 */
-        p{  
+        p {
             background: green;
             font-family: "Microsoft Yahei";
             /* 默认16px */
@@ -44,28 +48,30 @@
             text-align: center;
             text-indent: 36px;
         }
-        span{
+
+        span {
             font-size: 28px;
             color: red;
             font-weight: bold;
             /* line-through overline */
-            text-decoration: underline black; 
+            text-decoration: underline black;
         }
-        a{  
+
+        a {
             /* 去除原有下划线 */
             text-decoration: none
         }
     </style>
 </head>
 <body>
-    <div>
-        你好
-        <div class="one">one</div>
-        <div class="two">two</div>
-    </div>
-    <hr>
-    <p>这是一个<span>普通的</span>的段落标签</p>
-    <hr>
-    <a href="#">百度</a>
+<div>
+    你好
+    <div class="one">one</div>
+    <div class="two">two</div>
+</div>
+<hr>
+<p>这是一个<span>普通的</span>的段落标签</p>
+<hr>
+<a href="#">百度</a>
 </body>
 </html>
