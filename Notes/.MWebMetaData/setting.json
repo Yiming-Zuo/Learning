@@ -1,10 +1,10 @@
 {
-  "name": "笔记",
-  "fileExtension": ".md",
-  "autoUploadInsertedImageKey": "pic.mingo.com-https:\/\/upload.qiniup.com",
-  "autoUploadInsertedImage": false,
-  "folderType": 10,
-  "mediaFloder": "media",
-  "orderBy": 0,
-  "newlinesToBR": 0
+  "name" : "笔记",
+  "fileExtension" : ".md",
+  "autoUploadInsertedImageKey" : "pic.mingo.com-https:\/\/upload.qiniup.com",
+  "autoUploadInsertedImage" : false,
+  "folderType" : 10,
+  "mediaFloder" : "media",
+  "orderBy" : 0,
+  "newlinesToBR" : 0
 }
